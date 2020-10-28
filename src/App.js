@@ -21,6 +21,17 @@ class App extends Component {
     });
   } 
 
+  textChangedHandler = (event) => {
+    this.setState({
+      persons:[
+        {name:event.target.value, age:12},
+        {name:"Carla", age: 73},
+        {name:"Bart", age: 14}
+      ]
+    })
+
+  }
+
   render() {
     return (
       <div className="App">
@@ -30,11 +41,15 @@ class App extends Component {
             World 1
           </li>
           
-          <Person name="A1" age="44" />
+          <Person name="A1" age="44" changed={this.textChangedHandler}/>
           <Person name="A2" age="22"> Mis hobbies son pocos</Person>
           <Person name="A3" age="66"/>
           {this.state.persons.map((person, i) => { 
-            return <Person name={person.name} age={person.age} />
+            return <Person 
+                      name={person.name} 
+                      age={person.age} 
+                      //onClick={App.textChangedHandler.bind(this, person)}
+                      />
           } )}
   
           <button onClick={this.changeNameHandler}>Change name</button>
